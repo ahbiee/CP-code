@@ -15,7 +15,7 @@ int main(){
         ListNode* head = nullptr, *current = nullptr, *last = nullptr;
 
         for(int i=1; i<=n; ++i){
-            ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+            ListNode* newNode = new ListNode;
             newNode->val = i;
             newNode->next = nullptr;
 
@@ -46,11 +46,11 @@ int main(){
             ListNode* tmp = head;
             head = head->next;
             pre->next = head;
-            free(tmp);
+            delete tmp;
             tmp = nullptr;
         }
         cout << ' ' << head->val << '\n';
-        free(head);
+        delete head;
         head = nullptr;
     }
     
