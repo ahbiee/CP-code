@@ -92,3 +92,59 @@ public:
         arr[b] = tmp;
     }
 };
+
+
+
+class HeapSort {
+public:
+
+    vector<int> sortArray(vector<int>& nums) {
+        int n = nums.size();
+        for(int i=(n-1)/2; i >= 0; --i){
+            // i正常來說是從n-1開始，但最底下那層的子樹都只有自己，一定是大根堆，所以從(n-1)/2開始
+            heapify(nums, i, n);
+            // 從底開始建樹
+        }
+
+        // 排序
+        int size = n;
+        while(size > 1){
+            swap(nums, 0, --size);
+            heapify(nums, 0, size);
+        }
+
+        return nums;
+    }
+
+    // 從上往下建才會用到，從下往上建不需要
+    void heapInsert(vector<int> &nums, int i){
+        // 插入新元素往上看
+        while(nums[i] > nums[(i-1)/2]){
+            swap(nums, i, (i-1)/2);
+            i = (i-1)/2;
+        }
+    }
+
+    void heapify(vector<int>& arr, int i, int size){
+        int l = i*2+1;
+        while(l < size){
+            // 如果右孩子存在且值大於左孩子就讓winner等於右孩子，否則就是左孩子
+            int winner = (l+1 < size) && (arr[l+1] > arr[l]) ? l+1 : l;
+            // 確認winner所在的值是否大於父親的值
+            winner = (arr[winner] > arr[i]) ? winner : i;
+            // 如果孩子都比父親小就結束往下的排序
+            if(winner == i) break;
+            // 否則交換值，i繼續往下走(變成孩子)
+            swap(arr, winner, i);
+            i = winner;
+            // l繼續往下找有沒有孩子
+            l = i*2+1;
+        }
+    }
+
+    void swap(vector<int>& arr, int a, int b){
+        int tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }
+};
