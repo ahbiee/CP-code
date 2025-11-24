@@ -3,7 +3,8 @@ using namespace std;
 
 struct ListNode{
     int val;
-    ListNode* next;
+    ListNode* next = nullptr;
+    ListNode(int i): val{i}{}
 };
 
 int main(){
@@ -12,46 +13,44 @@ int main(){
 
     int n, m;
     while(cin >> n >> m){
-        ListNode* head = nullptr, *current = nullptr, *last = nullptr;
+        ListNode* head = nullptr, *last = nullptr;
 
         for(int i=1; i<=n; ++i){
-            ListNode* newNode = new ListNode;
-            newNode->val = i;
-            newNode->next = nullptr;
+            ListNode* newNode = new ListNode(i);
 
             if(head == nullptr){
                 head = newNode;
             }
             else{
-                current->next = newNode;
+                last->next = newNode;
             }
-            current = newNode;
             last = newNode;
         }
         
         if(last != nullptr) last->next = head;
 
         bool first = true;
-        while(head != head->next){
+        ListNode* current = head;
+        ListNode* pre = last;
+        for(int count = 1; count <= n; ++count){
             if(first) first = false;
             else cout << ' ';
 
-            ListNode *pre = nullptr;
             for(int i=1; i<m; ++i){
-                pre = head;
-                head = head->next;
+                pre = current;
+                current = current->next;
             }
-            cout << head->val;
+            cout << current->val;
 
-            ListNode* tmp = head;
-            head = head->next;
-            pre->next = head;
+            pre->next = current->next;
+            ListNode* tmp = current;
+            current = current->next;
+
+            if(tmp == head) head = current;
+
             delete tmp;
-            tmp = nullptr;
         }
-        cout << ' ' << head->val << '\n';
-        delete head;
-        head = nullptr;
+        cout << '\n';
     }
     
     return 0;
