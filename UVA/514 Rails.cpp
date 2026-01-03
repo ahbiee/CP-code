@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    int n=0; // the sequence length
+    int arr[1005] = {}; // to store the input sequence
+    while(cin >> n && n != 0){
+        while(cin >> arr[1] && arr[1] != 0){
+            for(int i=2; i<=n; ++i) cin >> arr[i]; // arr[1] ~ arr[n] is the sequence we want to make
+            stack<int> s;
+            int k = 1; // is used to record the relation
+            for(int j=1; j<=n; ++j){ // start pushing the stack with 1, 2, ..., n sequence
+                s.push(j);
+                while(!s.empty() && s.top() == arr[k]){ 
+                // if stack top == arr[k], we pop the top and ++k, means k already moved to station B
+                    s.pop();
+                    ++k;
+                }
+            }
+            cout << (s.empty() ? "Yes" : "No") << '\n';
+        }
+        cout << '\n';
+    }
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    int kase;
+    cin >> kase;
+
+    int D, I;
+    while(kase--){
+        cin >> D >> I;
+        int ans = 1;
+        int root = 1;
+        for(int i = 1; i < D; ++i){ // 1 ~ D-1 level
+            if(I % 2 == 1){ // odd
+                root = root*2; // go left
+                I = (I+1)/2; // count the sequence in left subtree: 1->1, 3->2, 5->3, 7->4...
+            }
+            else{ // even
+                root = root*2+1; // go right
+                I = I/2; // count the sequence in right subtree: 2->1, 4->2, 6->3, 8->4...
+            }
+        }
+        cout << root << '\n'; // the stop position
+    }
+    int end;
+    cin >> end;
+    return 0;
+}
