@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#define pb(x) push_back(x)
+#define eb(x) emplace_back(x)
+#define pb(x, y) push_back(x, y)
+#define eb(x, y) emplace_back(x, y)
+#define mp(x, y) make_pair(x, y)
+
+using namespace std;
+using ll = long long;
+using pii = pair<int, int>;
+
+int n; // n <= 10^4
+vector<pii> line; // start, end <= 10^5
+priority_queue<int, vector<int>, greater<int>> heap; // 要用小根堆
+
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    while(cin >> n){
+        // 開始前要先確保清空
+        line.clear();
+        while(!heap.empty()) heap.pop();
+
+        int x, y;
+        for(int i=0; i<n; ++i){
+            cin >> x >> y;
+            line.eb(x, y);
+        }
+        sort(line.begin(), line.end(), [](auto&a, auto&b){return a.first < b.first;}); // 應為 a.first < b.first, 不能用 <=
+
+        size_t ans = 0;
+        for(int i=0; i<n; ++i){
+            while(heap.size() > 0 && heap.top() <= line[i].first) heap.pop();
+            heap.push(line[i].second);
+            ans = max(ans, heap.size());
+        }
+
+        cout << ans << '\n';
+    }
+    return 0;
+}
