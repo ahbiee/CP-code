@@ -10,7 +10,6 @@ using namespace std;
 using ll = long long;
 using pii = pair<int, int>;
 
-// https://www.nowcoder.com/practice/36fb0fd3c656480c92b569258a1223d5
 #define MAXN 100005
 
 int arr[MAXN];

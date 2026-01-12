@@ -10,7 +10,6 @@ using namespace std;
 using ll = long long;
 using pii = pair<int, int>;
 
-// https://leetcode.com/problems/range-sum-query-immutable/description/
 #define MAXN 10005
 
 class NumArray {
