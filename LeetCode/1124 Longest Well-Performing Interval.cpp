@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#define pb push_back
+#define eb emplace_back
+#define mp make_pair
+#define all(x) (x).begin(), (x).end()
+
+using namespace std;
+using ll = long long;
+using pii = pair<int, int>;
+
+class Solution {
+public:
+    int longestWPI(vector<int>& hours) {
+        map<int, int> mp; // prefixSum, firstIndex
+        mp[0] = -1;
+        int ans = 0;
+        int sum = 0;
+        for(int i=0; i<hours.size(); ++i){
+            sum += hours[i] > 8 ? 1 : -1; // hours[i] > 8, sum++; hours[i] <= 8, sum--;
+            if(sum > 0) ans = i + 1;
+            else if(mp.count(sum-1)) ans = max(ans, i - mp[sum-1]);
+            if(!mp.count(sum)) mp[sum] = i;
+        }
+        return ans;
+    }
+};
