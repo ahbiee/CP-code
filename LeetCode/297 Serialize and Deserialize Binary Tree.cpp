@@ -11,7 +11,6 @@ using namespace std;
 using ll = long long;
 using pii = pair<int, int>;
 
-// https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
 struct TreeNode {
     int val;
     TreeNode *left;

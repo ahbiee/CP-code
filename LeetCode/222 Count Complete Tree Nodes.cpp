@@ -11,7 +11,6 @@ using namespace std;
 using ll = long long;
 using pii = pair<int, int>;
 
-// https://leetcode.com/problems/count-complete-tree-nodes/
 struct TreeNode {
     int val;
     TreeNode *left;
