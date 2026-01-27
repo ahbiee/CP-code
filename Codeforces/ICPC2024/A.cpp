@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+#define pb push_back
+#define eb emplace_back
+#define mp make_pair
+#define INF 0x3f3f3f3f
+#define all(x) (x).begin(), (x).end()
+
+using namespace std;
+using ll = long long;
+using pii = pair<int, int>;
+
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    int sum = 15;
+    int num;
+    while(cin >> num){
+        sum = 15;
+        sum -= num;
+        for(int i=0; i<3; ++i){
+            cin >> num;
+            sum -= num;
+        }
+        cout << sum << '\n';
+    }
+    return 0;
+}
