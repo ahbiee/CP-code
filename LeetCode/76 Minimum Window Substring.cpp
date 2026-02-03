@@ -11,7 +11,6 @@ using namespace std;
 using ll = long long;
 using pii = pair<int, int>;
 
-// https://leetcode.com/problems/minimum-window-substring/
 class Solution {
 public:
     string minWindow(string s, string t) {
