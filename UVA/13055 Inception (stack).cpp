@@ -7,7 +7,7 @@ int main(){
     int n;
     string cmd, name;
     stack<string> slept;
-    cin >> n;
+    cin >> n >> ws;
     while(n--){
         cin >> cmd;
         if(cmd == "Sleep"){
