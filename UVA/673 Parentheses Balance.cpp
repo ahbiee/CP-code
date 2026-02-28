@@ -38,7 +38,7 @@ int main() {
             }
         }
 
-        cout << (valid&&!st.empty() ? "Yes" : "No") << '\n';
+        cout << (valid&&st.empty() ? "Yes" : "No") << '\n';
     }
     
     return 0;

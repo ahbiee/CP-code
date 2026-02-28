@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int kases, scenario = 1;
+    string cmd;
+    while(cin >> kases && kases){
+        cout << "Scenario #" << scenario << '\n';
+        queue<int> q1, q2[1005];
+        // q1 stores the seqence of teams, q2 stores the sequence of elements in each team (search team by index)
+        map<int, int> mp; // key: element, value: team
+
+        int len, num;
+        for(int team = 1; team <= kases; ++team){
+            cin >> len;
+            while(len--){
+                cin >> num;
+                mp[num] = team;
+            }
+        }
+        while(cin >> cmd){
+            if(cmd == "ENQUEUE"){
+                cin >> num;
+                if(q2[mp[num]].empty()){
+                    q1.push(mp[num]); // q1 pushes the team of num
+                }
+                q2[mp[num]].push(num); // anyway, we need to push num into the team
+            }
+            else if(cmd == "DEQUEUE"){
+                while(q2[q1.front()].empty() && !q1.empty()) q1.pop();
+                cout << q2[q1.front()].front() << '\n';
+                q2[q1.front()].pop();
+            }
+            else break;
+        }
+        ++scenario;
+        cout << '\n';
+    }
+    
+    return 0;
+}
