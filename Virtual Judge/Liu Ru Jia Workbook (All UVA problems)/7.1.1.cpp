@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// 每個數字只會出現一次，因此枚舉範圍是 01234 ~ 98765
+int n, val;
+
+bool allow(int i){
+    string s1 = to_string(val), s2 = to_string(i);
+    set<char> s;
+    if(i < 10000) s.insert('0');
+    for(auto &c : s1) s.insert(c);
+    for(auto &c : s2) s.insert(c);
+    return s.size() == 10;
+}
+int main(){
+    bool flag, first = true;
+    while(cin >> n && n){
+        if(!first) printf("\n");
+        first = false;
+        flag = true;
+        for(int i=1234; i <= 98765; ++i){
+            val = i*n;
+            if(val > 1e4 && val < 1e5 && allow(i)){
+                flag = false;
+                printf("%5d / %05d = %d\n", val, i, n);
+            }
+        }
+        if(flag){
+            printf("There are no solutions for %d.\n", n);
+        }
+    }
+    return 0;
+}
