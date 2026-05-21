@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+#define MAXN 100005
+using namespace std;
+
+int main() {
+    int kase;
+    cin >> kase;
+    while(kase--){
+        vector<int> dp(MAXN, 0);
+        int n; // items
+        cin >> n;
+        int sum = 0;
+        int p, w;
+        for(int i=0; i<n; ++i){
+            cin >> p >> w;
+            sum += w;
+            for(int j = sum; j >= w; --j){
+                dp[j] = max(dp[j], dp[j-w] + p); // 一維滾動陣列
+            }
+        }
+        for(int i=1; i<=sum; ++i){
+            dp[i] = max(dp[i], dp[i-1]); // 保證單調遞增
+        }
+        int g; // groups
+        cin >> g;
+        int ans = 0;
+        for(int i=0; i<g; ++i){
+            cin >> w;
+            ans += dp[w];
+        }
+        cout << ans << '\n';
+    }
+    return 0;
+}
