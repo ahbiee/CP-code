@@ -8,14 +8,7 @@ int main() {
         int v[3];
         cin >> v[0] >> v[1] >> v[2];
         sort(v, v+3);
-        int cnt = 0;
-        while(v[0] != v[1] && v[0] != v[2] && v[1] != v[2]){
-            ++cnt;
-            --v[2];
-            ++v[0];
-            sort(v, v+3);
-        }
-        cout << cnt << '\n';
+        cout << min(abs(v[0]-v[1]), abs(v[1]-v[2])) << '\n';
     }
     return 0;
 }
