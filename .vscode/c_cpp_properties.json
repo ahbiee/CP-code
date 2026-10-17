@@ -5,12 +5,12 @@
       "includePath": [
         "${workspaceFolder}/**"
       ],
-      "compilerPath": "C:/mingw64/bin/gcc.exe",
+      "compilerPath": "C:/mingw64/bin/g++.exe",
       "cStandard": "${default}",
-      "cppStandard": "${default}",
+      "cppStandard": "c++17",
       "intelliSenseMode": "windows-gcc-x64",
       "compilerArgs": [
-        ""
+        "-DLOCAL"
       ]
     }
   ],

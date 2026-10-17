@@ -6,10 +6,17 @@
             "command": "C:\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-Wshadow",
+                "-D_GLIBCXX_DEBUG",
+                "-DLOCAL",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-Wl,--stack=268435456"
             ],
             "options": {
                 "cwd": "${fileDirname}"
