@@ -24,7 +24,7 @@ int main() {
         int cnt = 0;
         while(a != -1){
             cin >> b;
-            if(!unite(a, b)) ++cnt;
+            if(!unite(a, b)) ++cnt; // 計算unite失敗次數
             cin >> a;
         }
         cout << cnt << '\n';
